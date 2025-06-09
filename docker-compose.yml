@@ -1,9 +1,22 @@
 version: "3.8"
 services:
+  db:
+    image: mysql:8.0
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: codex
+    volumes:
+      - db-data:/var/lib/mysql
   api:
     build: .
     ports:
       - "3000:3000"
     volumes:
       - ./uploads:/usr/src/app/uploads
-      - ./prisma/dev.db:/usr/src/app/prisma/dev.db
+    environment:
+      DATABASE_URL: mysql://root:password@db:3306/codex
+    depends_on:
+      - db
+volumes:
+  db-data:
