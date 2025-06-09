@@ -16,6 +16,9 @@ Generate the Prisma client:
 npx prisma generate
 ```
 
+Copy `.env.example` to `.env` and adjust the connection string if needed. Prisma
+will use this value to connect to MySQL.
+
 Run the application in development mode:
 
 ```bash
@@ -35,6 +38,6 @@ container stack with Docker Compose:
 docker-compose up --build
 ```
 
-The application will be exposed on port `3000` and will automatically create the
-SQLite database inside the `prisma/` directory. Uploaded files are persisted in
-`uploads/` on the host machine.
+The application will be exposed on port `3000` and a MySQL database will be
+started alongside the API. Uploaded files are persisted in `uploads/` on the
+host machine.
