@@ -17,7 +17,7 @@ export class ProductsService {
         name: dto.name,
         description: dto.description,
         price: dto.price,
-        details: dto.details as Prisma.InputJsonValue,
+        details: dto.details as unknown as Prisma.InputJsonValue,
         images: {
           create: images.map((img) => ({
             url: img.url,
@@ -50,7 +50,7 @@ export class ProductsService {
         where: { id },
         data: {
           ...dto,
-          details: dto.details as Prisma.InputJsonValue,
+          details: dto.details as unknown as Prisma.InputJsonValue,
         },
         include: { images: true },
       });
